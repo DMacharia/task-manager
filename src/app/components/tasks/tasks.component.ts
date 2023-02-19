@@ -16,6 +16,6 @@ export class TasksComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.tasks = this.taskService.getTasks();
+    this.taskService.getTasks().subscribe((tasks)=>this.tasks = tasks);
   }
 }
