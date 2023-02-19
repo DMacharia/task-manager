@@ -13,9 +13,15 @@ export class TasksComponent {
   //in order to use a service we have to add it as a provider inside the constructor
   constructor(private taskService: TaskService){}
 
+  //now we can use this.taskService
+
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.taskService.getTasks().subscribe((tasks)=>this.tasks = tasks);
+  }
+
+  onDeleteTask(task: Task){
+    this.taskService.deleteTasks(task).subscribe(()=>(this.tasks = this.tasks.filter((t)=>t.id !== task.id)))
   }
 }
