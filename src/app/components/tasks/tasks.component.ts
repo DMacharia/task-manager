@@ -21,7 +21,14 @@ export class TasksComponent {
     this.taskService.getTasks().subscribe((tasks)=>this.tasks = tasks);
   }
 
-  onDeleteTask(task: Task){
+  onDeleteTask(task: Task): void{
     this.taskService.deleteTasks(task).subscribe(()=>(this.tasks = this.tasks.filter((t)=>t.id !== task.id)))
   }
+
+  toggleTask(task: Task){
+    task.reminder = !task.reminder
+    this.taskService.updateTaskReminder(task).subscribe()
+  }
+
+
 }
